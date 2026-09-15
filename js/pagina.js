@@ -1,0 +1,220 @@
+(function () {
+  "use strict";
+
+  const datos = window.CEIGMM_DATA;
+  const sitio = document.querySelector("#sitio");
+
+  if (!datos || !sitio) {
+    document.body.innerHTML =
+      "<p style='padding:2rem;font-family:Arial'>No se pudo cargar el contenido de la página.</p>";
+    return;
+  }
+
+  const escapar = (valor) =>
+    String(valor ?? "")
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#039;");
+
+  const linkExterno = (url) =>
+    /^https?:\/\//i.test(url || "") ? ' target="_blank" rel="noreferrer"' : "";
+
+  const cifras = datos.presentacion.cifras
+    .map(
+      (item) => `
+        <div>
+          <strong>${escapar(item.valor)}</strong>
+          <span>${escapar(item.texto)}</span>
+        </div>`,
+    )
+    .join("");
+
+  const ejes = datos.ejes.items
+    .map(
+      (item) => `
+        <article class="pillar-card">
+          <div class="pillar-meta">
+            <span>${escapar(item.numero)}</span>
+            <small>${escapar(item.etiqueta)}</small>
+          </div>
+          <h3>${escapar(item.titulo)}</h3>
+          <p>${escapar(item.texto)}</p>
+          <span class="pillar-mark" aria-hidden="true">↗</span>
+        </article>`,
+    )
+    .join("");
+
+  const agenda = datos.agenda.items
+    .map((item, indice) => {
+      const contenido = `
+        <div class="agenda-number">${String(indice + 1).padStart(2, "0")}</div>
+        <div>
+          <span>${escapar(item.tipo)}</span>
+          <h3>${escapar(item.titulo)}</h3>
+          <p>${escapar(item.texto)}</p>
+        </div>
+        <span class="status">${escapar(item.estado)}</span>`;
+
+      return item.enlace
+        ? `<article><a class="agenda-entry" href="${escapar(item.enlace)}"${linkExterno(item.enlace)}>${contenido}</a></article>`
+        : `<article>${contenido}</article>`;
+    })
+    .join("");
+
+  const temasCanal = datos.canalWhatsapp.temas
+    .map((tema) => `<span>${escapar(tema)}</span>`)
+    .join("");
+
+  const redes = datos.contacto.redes
+    .map(
+      (red) => `
+        <a class="button ${red.estilo === "claro" ? "light-button" : "outline-button"}"
+           href="${escapar(red.enlace)}"${linkExterno(red.enlace)}>
+          ${escapar(red.nombre)} <span aria-hidden="true">↗</span>
+        </a>`,
+    )
+    .join("");
+
+  const especialidades = datos.portada.especialidadesRepresentadas
+    .map((nombre) => `<span>${escapar(nombre)}</span>`)
+    .join("");
+
+  sitio.innerHTML = `
+    <div class="announcement">
+      <p><span>${escapar(datos.aviso.etiqueta)}</span> ${escapar(datos.aviso.texto)}</p>
+      <a href="#canal">${escapar(datos.aviso.enlaceTexto)} <span aria-hidden="true">→</span></a>
+    </div>
+
+    <header class="site-header">
+      <div class="institutional-brand">
+        <a class="ceigmm-brand" href="#inicio" aria-label="CEIGMM, ir al inicio">
+          <img src="${escapar(datos.identidad.logoCeigmm)}" alt="Escudo del CEIGMM" width="68" height="68" />
+          <span>
+            <strong>${escapar(datos.identidad.nombre)}</strong>
+            <small>${escapar(datos.identidad.descripcionCorta)}</small>
+          </span>
+        </a>
+        <span class="brand-divider" aria-hidden="true"></span>
+        <a class="uni-brand" href="${escapar(datos.identidad.enlaceUni)}" target="_blank" rel="noreferrer" aria-label="Universidad Nacional de Ingeniería">
+          <img src="${escapar(datos.identidad.logoUni)}" alt="Universidad Nacional de Ingeniería" />
+        </a>
+      </div>
+      <nav class="main-nav" aria-label="Navegación principal">
+        <a href="#inicio">Inicio</a>
+        <a href="#conoce">Conócenos</a>
+        <a href="#ejes">Ejes de trabajo</a>
+        <a href="#agenda">Actividades</a>
+        <a href="#canal">Canal</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+      <a class="header-action" href="#canal">Canal CEIGMM <span aria-hidden="true">↗</span></a>
+    </header>
+
+    <section class="hero" id="inicio">
+      <div class="contour contour-one" aria-hidden="true"></div>
+      <div class="contour contour-two" aria-hidden="true"></div>
+      <div class="hero-copy">
+        <p class="eyebrow"><span></span> ${escapar(datos.portada.especialidades)}</p>
+        <h1>${escapar(datos.portada.titulo)}<br /><em>${escapar(datos.portada.tituloDestacado)}</em></h1>
+        <p class="hero-lead">${escapar(datos.portada.descripcion)}</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#conoce">${escapar(datos.portada.botonPrincipal)} <span aria-hidden="true">→</span></a>
+          <a class="button secondary" href="#agenda">${escapar(datos.portada.botonSecundario)}</a>
+        </div>
+      </div>
+
+      <aside class="hero-emblem" aria-label="Identidad CEIGMM">
+        <div class="emblem-frame">
+          <span class="emblem-caption top">${escapar(datos.identidad.descripcionCorta)}</span>
+          <img src="${escapar(datos.identidad.logoCeigmm)}" alt="Escudo del Centro de Estudiantes de Ingeniería Geológica, Minera y Metalúrgica" width="260" height="260" />
+          <span class="emblem-caption bottom">${escapar(datos.identidad.universidad)}</span>
+        </div>
+        <div class="specialties" aria-label="Especialidades representadas">${especialidades}</div>
+      </aside>
+    </section>
+
+    <section class="welcome" id="conoce">
+      <div class="welcome-heading">
+        <p class="section-kicker">${escapar(datos.presentacion.etiqueta)}</p>
+        <h2>${escapar(datos.presentacion.titulo)}</h2>
+      </div>
+      <div class="welcome-copy">
+        <p>${escapar(datos.presentacion.texto)}</p>
+        <a class="text-link" href="#ejes">${escapar(datos.presentacion.enlaceTexto)} <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="stats" aria-label="CEIGMM en cifras">${cifras}</div>
+    </section>
+
+    <section class="pillars" id="ejes">
+      <div class="section-intro">
+        <div>
+          <p class="section-kicker light">${escapar(datos.ejes.etiqueta)}</p>
+          <h2>${escapar(datos.ejes.titulo)}</h2>
+        </div>
+        <p>${escapar(datos.ejes.introduccion)}</p>
+      </div>
+      <div class="pillar-grid">${ejes}</div>
+    </section>
+
+    <section class="agenda" id="agenda">
+      <div class="agenda-title">
+        <p class="section-kicker">${escapar(datos.agenda.etiqueta)}</p>
+        <h2>${escapar(datos.agenda.titulo)}</h2>
+        <p>${escapar(datos.agenda.introduccion)}</p>
+      </div>
+      <div class="agenda-list">${agenda}</div>
+    </section>
+
+    <section class="whatsapp-channel" id="canal">
+      <div class="channel-copy">
+        <p class="section-kicker">${escapar(datos.canalWhatsapp.etiqueta)}</p>
+        <h2>${escapar(datos.canalWhatsapp.titulo)}</h2>
+        <p class="channel-lead">${escapar(datos.canalWhatsapp.texto)}</p>
+        <div class="channel-topics" aria-label="Contenido del canal">${temasCanal}</div>
+        <a class="button channel-button" href="${escapar(datos.canalWhatsapp.enlace)}"${linkExterno(datos.canalWhatsapp.enlace)}>
+          ${escapar(datos.canalWhatsapp.boton)} <span aria-hidden="true">↗</span>
+        </a>
+        <p class="channel-note">${escapar(datos.canalWhatsapp.nota)}</p>
+      </div>
+
+      <aside class="channel-card" aria-label="Canal oficial del CEIGMM en WhatsApp">
+        <div class="channel-card-header">
+          <span class="channel-mark" aria-hidden="true">CE</span>
+          <div>
+            <small>Canal oficial</small>
+            <h3>${escapar(datos.canalWhatsapp.nombre)}</h3>
+          </div>
+        </div>
+        <blockquote>${escapar(datos.canalWhatsapp.descripcion)}</blockquote>
+        <div class="channel-qr">
+          <img src="${escapar(datos.canalWhatsapp.qr)}" alt="Código QR del canal de WhatsApp del CEIGMM" width="180" height="180" />
+          <p><strong>Escanea para abrir el canal</strong><span>También puedes usar el botón desde tu celular.</span></p>
+        </div>
+      </aside>
+    </section>
+
+    <section class="contact" id="contacto">
+      <div>
+        <p class="section-kicker light">${escapar(datos.contacto.etiqueta)}</p>
+        <h2>${escapar(datos.contacto.titulo)}</h2>
+      </div>
+      <div class="contact-copy">
+        <p>${escapar(datos.contacto.texto)}</p>
+        <div class="contact-links">${redes}</div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="footer-identity">
+        <img src="${escapar(datos.identidad.logoCeigmm)}" alt="CEIGMM" width="54" height="54" />
+        <div><strong>${escapar(datos.identidad.nombre)} · UNI</strong><span>${escapar(datos.identidad.descripcionCorta)}</span></div>
+      </div>
+      <p>${escapar(datos.identidad.facultad)}<br />${escapar(datos.identidad.universidad)} · ${escapar(datos.identidad.ciudad)}</p>
+      <div class="footer-links">
+        <a href="#inicio">Volver arriba ↑</a>
+        <span>© ${escapar(datos.identidad.anio)} ${escapar(datos.identidad.nombre)}</span>
+      </div>
+    </footer>`;
+})();
