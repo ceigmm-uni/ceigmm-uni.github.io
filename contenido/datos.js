@@ -356,6 +356,25 @@ window.CEIGMM_DATA = {
           },
         ],
       },
+      {
+        nombre: "Apoyos",
+        descripcion:
+          "Colaboran con la directiva y brindan soporte a las actividades del CEIGMM.",
+        integrantes: [
+          {
+            nombre: "Jean Alvites",
+            cargo: "Apoyo a la Directiva",
+            imagen: "",
+            iniciales: "JA",
+          },
+          {
+            nombre: "Cristhian Olivares",
+            cargo: "Apoyo a la Directiva",
+            imagen: "",
+            iniciales: "CO",
+          },
+        ],
+      },
     ],
   },
 
