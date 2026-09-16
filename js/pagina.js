@@ -63,6 +63,17 @@
     })
     .join("");
 
+  const hitosHistoria = datos.historia.hitos
+    .map(
+      (hito) => `
+        <article class="history-card">
+          <span>${escapar(hito.anio)}</span>
+          <h3>${escapar(hito.titulo)}</h3>
+          <p>${escapar(hito.texto)}</p>
+        </article>`,
+    )
+    .join("");
+
   const temasCanal = datos.canalWhatsapp.temas
     .map((tema) => `<span>${escapar(tema)}</span>`)
     .join("");
@@ -79,6 +90,61 @@
 
   const especialidades = datos.portada.especialidadesRepresentadas
     .map((nombre) => `<span>${escapar(nombre)}</span>`)
+    .join("");
+
+  const escuelasBiblioteca = datos.biblioteca.escuelas
+    .map(
+      (escuela) => `
+        <article class="library-card">
+          <span>${escapar(escuela.numero)}</span>
+          <h3>${escapar(escuela.nombre)}</h3>
+          <p>${escapar(escuela.detalle)}</p>
+          <small>${escapar(datos.biblioteca.estado)}</small>
+        </article>`,
+    )
+    .join("");
+
+  const formularioActivo = Boolean(datos.contacto.formulario.destino);
+
+  const areasDirectiva = datos.directiva.areas
+    .map(
+      (area, indiceArea) => `
+        <article class="team-area">
+          <div class="team-area-heading">
+            <span>${String(indiceArea + 1).padStart(2, "0")}</span>
+            <div>
+              <h3>${escapar(area.nombre)}</h3>
+              <p>${escapar(area.descripcion)}</p>
+            </div>
+          </div>
+          <div class="team-members">
+            ${area.integrantes
+              .map(
+                (persona) => {
+                  const claseFoto = persona.formatoImagen === "retrato"
+                    ? "team-photo team-photo-retrato"
+                    : "team-photo team-photo-ficha";
+                  const retrato = persona.imagen
+                    ? `<div class="${claseFoto}" role="img" aria-label="Fotografía de ${escapar(persona.nombre)}"
+                         style="background-image: url('${escapar(persona.imagen)}')"></div>`
+                    : `<div class="team-photo team-photo-placeholder" role="img" aria-label="Fotografía pendiente de ${escapar(persona.nombre)}">
+                         <span>${escapar(persona.iniciales || persona.nombre.charAt(0))}</span>
+                       </div>`;
+
+                  return `
+                  <div class="team-member">
+                    ${retrato}
+                    <div class="team-member-copy">
+                      <strong>${escapar(persona.nombre)}</strong>
+                      <span>${escapar(persona.cargo)}</span>
+                    </div>
+                  </div>`;
+                },
+              )
+              .join("")}
+          </div>
+        </article>`,
+    )
     .join("");
 
   sitio.innerHTML = `
@@ -107,6 +173,8 @@
         <a href="#ejes">Ejes de trabajo</a>
         <a href="#agenda">Actividades</a>
         <a href="#canal">Canal</a>
+        <a href="#directiva">Directiva</a>
+        <a href="#biblioteca">Biblioteca</a>
         <a href="#contacto">Contacto</a>
       </nav>
       <a class="header-action" href="#canal">Canal CEIGMM <span aria-hidden="true">↗</span></a>
@@ -167,6 +235,20 @@
       <div class="agenda-list">${agenda}</div>
     </section>
 
+    <section class="history" id="historia">
+      <div class="history-heading">
+        <div>
+          <p class="section-kicker light">${escapar(datos.historia.etiqueta)}</p>
+          <h2>${escapar(datos.historia.titulo)}</h2>
+        </div>
+        <div class="history-copy">
+          <p>${escapar(datos.historia.introduccion)}</p>
+          <a href="${escapar(datos.historia.enlaceFuente)}"${linkExterno(datos.historia.enlaceFuente)}>${escapar(datos.historia.fuente)} <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+      <div class="history-timeline">${hitosHistoria}</div>
+    </section>
+
     <section class="whatsapp-channel" id="canal">
       <div class="channel-copy">
         <p class="section-kicker">${escapar(datos.canalWhatsapp.etiqueta)}</p>
@@ -195,15 +277,92 @@
       </aside>
     </section>
 
+    <section class="team" id="directiva">
+      <div class="team-intro">
+        <div>
+          <p class="section-kicker light">${escapar(datos.directiva.etiqueta)}</p>
+          <h2>${escapar(datos.directiva.titulo)}</h2>
+        </div>
+        <div>
+          <p>${escapar(datos.directiva.introduccion)}</p>
+        </div>
+      </div>
+      <div class="team-areas">${areasDirectiva}</div>
+    </section>
+
+    <section class="library" id="biblioteca">
+      <div class="library-heading">
+        <div>
+          <p class="section-kicker">${escapar(datos.biblioteca.etiqueta)}</p>
+          <h2>${escapar(datos.biblioteca.titulo)}</h2>
+        </div>
+        <div class="library-copy">
+          <p>${escapar(datos.biblioteca.texto)}</p>
+          ${
+            datos.biblioteca.enlace
+              ? `<a class="button library-button" href="${escapar(datos.biblioteca.enlace)}"${linkExterno(datos.biblioteca.enlace)}>${escapar(datos.biblioteca.boton)} <span aria-hidden="true">↗</span></a>`
+              : `<span class="library-status">${escapar(datos.biblioteca.estado)}</span>`
+          }
+        </div>
+      </div>
+      <div class="library-grid">${escuelasBiblioteca}</div>
+      <p class="library-note">${escapar(datos.biblioteca.nota)}</p>
+    </section>
+
     <section class="contact" id="contacto">
-      <div>
+      <div class="contact-intro">
         <p class="section-kicker light">${escapar(datos.contacto.etiqueta)}</p>
         <h2>${escapar(datos.contacto.titulo)}</h2>
-      </div>
-      <div class="contact-copy">
         <p>${escapar(datos.contacto.texto)}</p>
+        <a class="contact-email" href="mailto:${escapar(datos.contacto.correo)}">
+          <small>${escapar(datos.contacto.correoEtiqueta)}</small>
+          <strong>${escapar(datos.contacto.correo)}</strong>
+          <span aria-hidden="true">↗</span>
+        </a>
         <div class="contact-links">${redes}</div>
       </div>
+
+      <form class="contact-form" method="post"${formularioActivo ? ` action="${escapar(datos.contacto.formulario.destino)}"` : ""}>
+        <p class="section-kicker light">${escapar(datos.contacto.formulario.etiqueta)}</p>
+        <h3>${escapar(datos.contacto.formulario.titulo)}</h3>
+        <div class="form-grid">
+          <label>
+            <span>Nombre completo</span>
+            <input type="text" name="nombre" autocomplete="name" required />
+          </label>
+          <label>
+            <span>Correo electrónico</span>
+            <input type="email" name="correo" autocomplete="email" required />
+          </label>
+          <label>
+            <span>Teléfono <small>(opcional)</small></span>
+            <input type="tel" name="telefono" autocomplete="tel" inputmode="tel" />
+          </label>
+          <label>
+            <span>Motivo</span>
+            <select name="motivo" required>
+              <option value="">Selecciona una opción</option>
+              <option>Consulta general</option>
+              <option>Sugerencia</option>
+              <option>Consulta académica</option>
+              <option>Actividad o evento</option>
+              <option>Propuesta estudiantil</option>
+              <option>Convenio o colaboración</option>
+              <option>Otro</option>
+            </select>
+          </label>
+          <label class="form-message">
+            <span>Mensaje</span>
+            <textarea name="mensaje" rows="5" required></textarea>
+          </label>
+          <label class="form-consent">
+            <input type="checkbox" name="consentimiento" required />
+            <span>Autorizo al CEIGMM a utilizar estos datos únicamente para responder mi consulta.</span>
+          </label>
+        </div>
+        <button class="button form-button" type="submit"${formularioActivo ? "" : " disabled"}>${escapar(datos.contacto.formulario.boton)}</button>
+        ${formularioActivo ? "" : `<p class="form-status">${escapar(datos.contacto.formulario.estado)}</p>`}
+      </form>
     </section>
 
     <footer>

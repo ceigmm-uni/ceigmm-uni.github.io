@@ -88,10 +88,19 @@ window.CEIGMM_DATA = {
       "Este espacio reunirá las convocatorias, actividades y oportunidades más importantes para los estudiantes.",
     items: [
       {
-        tipo: "Participación",
-        titulo: "Convocatorias estudiantiles",
+        tipo: "Desafío académico",
+        titulo: "DAI UNI",
         texto:
-          "Encuentra oportunidades para integrar comisiones, proyectos y actividades del CEIGMM.",
+          "El Desafío Académico Interdisciplinario comenzará en la semana 5 y estará dirigido a estudiantes de los primeros cuatro ciclos. Pronto compartiremos más información.",
+        estado: "Próximamente",
+        enlace: "",
+        imagen: "",
+      },
+      {
+        tipo: "Aniversario FIGMM",
+        titulo: "Semana de la Facultad",
+        texto:
+          "Celebraremos el aniversario de nuestra facultad con actividades para toda la comunidad FIGMM. Pronto compartiremos más información.",
         estado: "Próximamente",
         enlace: "",
         imagen: "",
@@ -117,6 +126,41 @@ window.CEIGMM_DATA = {
     ],
   },
 
+  historia: {
+    etiqueta: "Nuestra historia",
+    titulo: "Una tradición que comenzó formando a los ingenieros del Perú.",
+    introduccion:
+      "La historia de la FIGMM está vinculada al nacimiento de la actual Universidad Nacional de Ingeniería y a la formación de profesionales al servicio del desarrollo del país.",
+    fuente: "Reseña histórica oficial de la FIGMM",
+    enlaceFuente: "https://www.figmm.uni.edu.pe/presentacion/",
+    hitos: [
+      {
+        anio: "1875",
+        titulo: "Creación de la Escuela de Minas",
+        texto:
+          "El 20 de enero, durante el gobierno de Manuel Pardo, se expidió el decreto que creó la Escuela de Minas.",
+      },
+      {
+        anio: "1876",
+        titulo: "Inicio de una historia compartida",
+        texto:
+          "La Escuela de Ingeniería Civil y de Minas se instaló oficialmente el 9 de mayo, bajo la dirección de Eduardo de Habich.",
+      },
+      {
+        anio: "1958",
+        titulo: "Un espacio para seguir creciendo",
+        texto:
+          "El Patronato promovido por la industria minera inició la construcción de los edificios en los que actualmente funciona la facultad.",
+      },
+      {
+        anio: "HOY",
+        titulo: "Tres especialidades, una comunidad",
+        texto:
+          "La FIGMM reúne a Ingeniería Geológica, Ingeniería de Minas e Ingeniería Metalúrgica, continuando una tradición académica iniciada en 1876.",
+      },
+    ],
+  },
+
   canalWhatsapp: {
     etiqueta: "Información al instante",
     titulo: "El CEIGMM también está en WhatsApp.",
@@ -133,11 +177,232 @@ window.CEIGMM_DATA = {
     temas: ["Comunicados", "Convocatorias", "Actividades FIGMM"],
   },
 
-  contacto: {
-    etiqueta: "Participa y mantente informado",
-    titulo: "El centro somos todos.",
+  directiva: {
+    etiqueta: "Conoce a quienes te representan",
+    titulo: "Nuestra directiva estudiantil.",
+    introduccion:
+      "Un equipo de estudiantes de Geología, Minas y Metalurgia que trabaja de manera articulada al servicio de toda la comunidad FIGMM.",
+    areas: [
+      {
+        nombre: "Presidencia y Vicepresidencias",
+        descripcion:
+          "Dirigen la representación estudiantil y articulan el trabajo de las secretarías.",
+        integrantes: [
+          {
+            nombre: "Leonardo Taype",
+            cargo: "Presidente",
+            imagen: "imagenes/directiva/leonardo-taype.png",
+          },
+          {
+            nombre: "Treyzy Lima",
+            cargo: "Primera vicepresidenta",
+            imagen: "imagenes/directiva/treyzy-lima.png",
+          },
+          {
+            nombre: "Jeyson Leyva",
+            cargo: "Segundo vicepresidente",
+            imagen: "imagenes/directiva/jeyson-leyva.png",
+          },
+        ],
+      },
+      {
+        nombre: "Secretaría de Deportes",
+        descripcion:
+          "Promueve la integración y el acceso organizado a los espacios deportivos de la FIGMM.",
+        integrantes: [
+          {
+            nombre: "Anthony Aliaga",
+            cargo: "Secretaría de Deportes",
+            imagen: "imagenes/directiva/anthony-aliaga.png",
+          },
+          {
+            nombre: "Diego Reyes",
+            cargo: "Secretaría de Deportes",
+            imagen: "",
+            iniciales: "DR",
+          },
+        ],
+      },
+      {
+        nombre: "Secretaría de Organización",
+        descripcion:
+          "Coordina el calendario, el archivo institucional y el seguimiento interno de actividades.",
+        integrantes: [
+          {
+            nombre: "Dayana Alvarez",
+            cargo: "Secretaría de Organización",
+            imagen: "imagenes/directiva/dayana-alvarez.png",
+          },
+          {
+            nombre: "Marco Venturo",
+            cargo: "Secretaría de Organización",
+            imagen: "",
+            iniciales: "MV",
+          },
+        ],
+      },
+      {
+        nombre: "Secretaría de Cultura",
+        descripcion:
+          "Impulsa experiencias culturales, visitas, concursos e integración con otras comunidades universitarias.",
+        integrantes: [
+          {
+            nombre: "Sandy Laveriano",
+            cargo: "Secretaría de Cultura",
+            imagen: "imagenes/directiva/sandy-laveriano.png",
+          },
+          {
+            nombre: "Leydi Cornejo",
+            cargo: "Secretaría de Cultura",
+            imagen: "imagenes/directiva/leydi-cornejo.png",
+          },
+        ],
+      },
+      {
+        nombre: "Secretaría de Investigación",
+        descripcion:
+          "Fortalece la investigación estudiantil mediante redes, talleres, divulgación y repositorios de proyectos.",
+        integrantes: [
+          {
+            nombre: "Karen Perez",
+            cargo: "Secretaría de Investigación",
+            imagen: "imagenes/directiva/karen-perez.png",
+          },
+          {
+            nombre: "Mirko Puente",
+            cargo: "Secretaría de Investigación",
+            imagen: "imagenes/directiva/mirko-puente.png",
+          },
+        ],
+      },
+      {
+        nombre: "Secretaría de Prensa",
+        descripcion:
+          "Comunica acuerdos, actividades y logros de la comunidad estudiantil de forma clara y constante.",
+        integrantes: [
+          {
+            nombre: "Katia Ruiz",
+            cargo: "Secretaría de Prensa",
+            imagen: "imagenes/directiva/katia-ruiz.png",
+          },
+          {
+            nombre: "Madely Flores",
+            cargo: "Secretaría de Prensa",
+            imagen: "",
+            iniciales: "MF",
+          },
+        ],
+      },
+      {
+        nombre: "Secretaría de Relaciones",
+        descripcion:
+          "Conecta a los estudiantes con egresados, especialistas y oportunidades de desarrollo profesional.",
+        integrantes: [
+          {
+            nombre: "Leydy Crisologo",
+            cargo: "Secretaría de Relaciones",
+            imagen: "imagenes/directiva/leydy-crisologo.png",
+          },
+          {
+            nombre: "Dario Vidal",
+            cargo: "Secretaría de Relaciones",
+            imagen: "imagenes/directiva/dario-vidal.png",
+          },
+        ],
+      },
+      {
+        nombre: "Secretaría Académica",
+        descripcion:
+          "Organiza asesorías, recursos académicos y oportunidades formativas para los estudiantes.",
+        integrantes: [
+          {
+            nombre: "Adeli Ricra",
+            cargo: "Secretaría Académica",
+            imagen: "imagenes/directiva/adeli-ricra.png",
+          },
+          {
+            nombre: "Valeria Camara",
+            cargo: "Secretaría Académica",
+            imagen: "imagenes/directiva/valeria-camara.png",
+          },
+        ],
+      },
+      {
+        nombre: "Secretaría de Logística",
+        descripcion:
+          "Brinda soporte a las actividades y promueve el orden de equipos, materiales y espacios comunes.",
+        integrantes: [
+          {
+            nombre: "Dennis Zuasnabar",
+            cargo: "Secretaría de Logística",
+            imagen: "imagenes/directiva/dennis-zuasnabar.png",
+          },
+        ],
+      },
+      {
+        nombre: "Secretaría de Economía",
+        descripcion:
+          "Planifica y administra los recursos del CEIGMM con responsabilidad y transparencia.",
+        integrantes: [
+          {
+            nombre: "Arturo Reyes",
+            cargo: "Secretaría de Economía",
+            imagen: "imagenes/directiva/arturo-reyes.png",
+          },
+          {
+            nombre: "Diego Camani",
+            cargo: "Secretaría de Economía",
+            imagen: "imagenes/directiva/diego-camani.png",
+          },
+        ],
+      },
+    ],
+  },
+
+  biblioteca: {
+    etiqueta: "Biblioteca académica",
+    titulo: "El Drive del CEIGMM, ordenado para encontrar lo que necesitas.",
     texto:
-      "Sigue las novedades del CEIGMM, participa en nuestras actividades y ayúdanos a construir una facultad más unida.",
+      "Consulta nuestra colección colaborativa de planchas, exámenes, prácticas y materiales de apoyo académico recopilados por estudiantes de la FIGMM.",
+    boton: "Abrir el Drive académico",
+    enlace: "https://drive.google.com/drive/u/0/folders/1L1UgYFYMwmiXcXQTshYC32yW6SZh9Wwv",
+    estado: "Repositorio en crecimiento",
+    nota:
+      "El material se comparte como apoyo académico. Cada estudiante es responsable de utilizarlo de manera ética y respetar la autoría de los documentos.",
+    escuelas: [
+      {
+        numero: "01",
+        nombre: "Ingeniería Geológica",
+        detalle: "Cursos y evaluaciones organizados del 1.er al 10.º ciclo.",
+      },
+      {
+        numero: "02",
+        nombre: "Ingeniería de Minas",
+        detalle: "Cursos y evaluaciones organizados del 1.er al 10.º ciclo.",
+      },
+      {
+        numero: "03",
+        nombre: "Ingeniería Metalúrgica",
+        detalle: "Cursos y evaluaciones organizados del 1.er al 10.º ciclo.",
+      },
+    ],
+  },
+
+  contacto: {
+    etiqueta: "Estamos para escucharte",
+    titulo: "Conversemos.",
+    texto:
+      "Envíanos tus consultas, sugerencias o propuestas. Déjanos tus datos y el equipo del CEIGMM se pondrá en contacto contigo.",
+    correo: "ceigmm@uni.edu.pe",
+    correoEtiqueta: "Correo institucional",
+    formulario: {
+      etiqueta: "Formulario de contacto",
+      titulo: "Envíanos tu consulta o sugerencia",
+      boton: "Enviar",
+      destino: "",
+      estado:
+        "Estamos preparando el almacenamiento privado de consultas. Mientras tanto, puedes escribirnos directamente al correo institucional.",
+    },
     redes: [
       {
         nombre: "Facebook",
