@@ -177,9 +177,9 @@
           <a href="#agenda"><span>03</span>Actividades</a>
           <a href="#historia"><span>04</span>Historia de la FIGMM</a>
           <a href="#canal"><span>05</span>Canal de WhatsApp</a>
-          <a href="#directiva"><span>06</span>Directiva</a>
-          <a href="#biblioteca"><span>07</span>Drive CEIGMM</a>
-          <a href="#conoce"><span>08</span>Quiénes somos</a>
+          <a href="#biblioteca"><span>06</span>Drive CEIGMM</a>
+          <a href="#conoce"><span>07</span>Quiénes somos</a>
+          <a href="#directiva"><span>08</span>Directiva</a>
           <a href="#contacto"><span>09</span>Sugerencias y contacto</a>
         </nav>
       </aside>
@@ -202,9 +202,9 @@
       <nav class="main-nav" aria-label="Navegación principal">
         <a href="#agenda">Actividades</a>
         <a href="#historia">Historia</a>
-        <a href="#directiva">Directiva</a>
         <a href="#biblioteca">Drive</a>
         <a href="#conoce">Quiénes somos</a>
+        <a href="#directiva">Directiva</a>
         <a href="#contacto">Sugerencias</a>
       </nav>
       <a class="header-action" href="#canal">Canal CEIGMM <span aria-hidden="true">↗</span></a>
@@ -295,19 +295,6 @@
       </aside>
     </section>
 
-    <section class="team" id="directiva">
-      <div class="team-intro">
-        <div>
-          <p class="section-kicker light">${escapar(datos.directiva.etiqueta)}</p>
-          <h2>${escapar(datos.directiva.titulo)}</h2>
-        </div>
-        <div>
-          <p>${escapar(datos.directiva.introduccion)}</p>
-        </div>
-      </div>
-      <div class="team-areas">${areasDirectiva}</div>
-    </section>
-
     <section class="library" id="biblioteca">
       <div class="library-heading">
         <div>
@@ -337,6 +324,19 @@
         <a class="text-link" href="#ejes">${escapar(datos.presentacion.enlaceTexto)} <span aria-hidden="true">→</span></a>
       </div>
       <div class="stats" aria-label="CEIGMM en cifras">${cifras}</div>
+    </section>
+
+    <section class="team" id="directiva">
+      <div class="team-intro">
+        <div>
+          <p class="section-kicker light">${escapar(datos.directiva.etiqueta)}</p>
+          <h2>${escapar(datos.directiva.titulo)}</h2>
+        </div>
+        <div>
+          <p>${escapar(datos.directiva.introduccion)}</p>
+        </div>
+      </div>
+      <div class="team-areas">${areasDirectiva}</div>
     </section>
 
     <section class="contact" id="contacto">

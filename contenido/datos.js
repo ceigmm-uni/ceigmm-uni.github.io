@@ -193,7 +193,8 @@ window.CEIGMM_DATA = {
             cargo: "Presidente",
             imagen: "imagenes/directiva/leonardo-taype-canva.png",
             formatoImagen: "retrato",
-            zoomFoto: 100,
+            zoomFoto: 185,
+            posicionFoto: "center 32%",
           },
           {
             nombre: "Treyzy Lima",
