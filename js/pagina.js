@@ -124,9 +124,12 @@
                   const claseFoto = persona.formatoImagen === "retrato"
                     ? "team-photo team-photo-retrato"
                     : "team-photo team-photo-ficha";
+                  const estiloEncuadre = persona.formatoImagen === "retrato"
+                    ? `--photo-zoom: ${Number(persona.zoomFoto) || 140}%; --photo-position: ${escapar(persona.posicionFoto || "center top")}; `
+                    : "";
                   const retrato = persona.imagen
                     ? `<div class="${claseFoto}" role="img" aria-label="Fotografía de ${escapar(persona.nombre)}"
-                         style="background-image: url('${escapar(persona.imagen)}')"></div>`
+                         style="${estiloEncuadre}background-image: url('${escapar(persona.imagen)}')"></div>`
                     : `<div class="team-photo team-photo-placeholder" role="img" aria-label="Fotografía pendiente de ${escapar(persona.nombre)}">
                          <span>${escapar(persona.iniciales || persona.nombre.charAt(0))}</span>
                        </div>`;
@@ -150,7 +153,36 @@
   sitio.innerHTML = `
     <div class="announcement">
       <p><span>${escapar(datos.aviso.etiqueta)}</span> ${escapar(datos.aviso.texto)}</p>
-      <a href="#canal">${escapar(datos.aviso.enlaceTexto)} <span aria-hidden="true">→</span></a>
+      <div class="announcement-actions">
+        <a class="announcement-channel" href="#canal">${escapar(datos.aviso.enlaceTexto)} <span aria-hidden="true">→</span></a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="section-menu" aria-label="Abrir menú de secciones" data-menu-toggle>
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+
+    <div class="section-menu" id="section-menu" aria-hidden="true">
+      <button class="section-menu-backdrop" type="button" aria-label="Cerrar menú" data-menu-close></button>
+      <aside class="section-menu-panel" role="dialog" aria-modal="true" aria-labelledby="section-menu-title">
+        <div class="section-menu-heading">
+          <div>
+            <small>Explora la página</small>
+            <h2 id="section-menu-title">Secciones</h2>
+          </div>
+          <button class="section-menu-close" type="button" aria-label="Cerrar menú" data-menu-close>×</button>
+        </div>
+        <nav class="section-menu-nav" aria-label="Secciones del sitio">
+          <a href="#inicio"><span>01</span>Inicio</a>
+          <a href="#ejes"><span>02</span>Ejes de trabajo</a>
+          <a href="#agenda"><span>03</span>Actividades</a>
+          <a href="#historia"><span>04</span>Historia de la FIGMM</a>
+          <a href="#canal"><span>05</span>Canal de WhatsApp</a>
+          <a href="#directiva"><span>06</span>Directiva</a>
+          <a href="#biblioteca"><span>07</span>Drive CEIGMM</a>
+          <a href="#conoce"><span>08</span>Quiénes somos</a>
+          <a href="#contacto"><span>09</span>Sugerencias y contacto</a>
+        </nav>
+      </aside>
     </div>
 
     <header class="site-header">
@@ -168,14 +200,12 @@
         </a>
       </div>
       <nav class="main-nav" aria-label="Navegación principal">
-        <a href="#inicio">Inicio</a>
-        <a href="#conoce">Conócenos</a>
-        <a href="#ejes">Ejes de trabajo</a>
         <a href="#agenda">Actividades</a>
-        <a href="#canal">Canal</a>
+        <a href="#historia">Historia</a>
         <a href="#directiva">Directiva</a>
-        <a href="#biblioteca">Biblioteca</a>
-        <a href="#contacto">Contacto</a>
+        <a href="#biblioteca">Drive</a>
+        <a href="#conoce">Quiénes somos</a>
+        <a href="#contacto">Sugerencias</a>
       </nav>
       <a class="header-action" href="#canal">Canal CEIGMM <span aria-hidden="true">↗</span></a>
     </header>
@@ -201,18 +231,6 @@
         </div>
         <div class="specialties" aria-label="Especialidades representadas">${especialidades}</div>
       </aside>
-    </section>
-
-    <section class="welcome" id="conoce">
-      <div class="welcome-heading">
-        <p class="section-kicker">${escapar(datos.presentacion.etiqueta)}</p>
-        <h2>${escapar(datos.presentacion.titulo)}</h2>
-      </div>
-      <div class="welcome-copy">
-        <p>${escapar(datos.presentacion.texto)}</p>
-        <a class="text-link" href="#ejes">${escapar(datos.presentacion.enlaceTexto)} <span aria-hidden="true">→</span></a>
-      </div>
-      <div class="stats" aria-label="CEIGMM en cifras">${cifras}</div>
     </section>
 
     <section class="pillars" id="ejes">
@@ -309,6 +327,18 @@
       <p class="library-note">${escapar(datos.biblioteca.nota)}</p>
     </section>
 
+    <section class="welcome" id="conoce">
+      <div class="welcome-heading">
+        <p class="section-kicker">${escapar(datos.presentacion.etiqueta)}</p>
+        <h2>${escapar(datos.presentacion.titulo)}</h2>
+      </div>
+      <div class="welcome-copy">
+        <p>${escapar(datos.presentacion.texto)}</p>
+        <a class="text-link" href="#ejes">${escapar(datos.presentacion.enlaceTexto)} <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="stats" aria-label="CEIGMM en cifras">${cifras}</div>
+    </section>
+
     <section class="contact" id="contacto">
       <div class="contact-intro">
         <p class="section-kicker light">${escapar(datos.contacto.etiqueta)}</p>
@@ -377,4 +407,27 @@
       </div>
       <small class="footer-credit">Página hecha en 2026 por CEIGMM L</small>
     </footer>`;
+
+  const menu = document.querySelector("#section-menu");
+  const menuToggle = document.querySelector("[data-menu-toggle]");
+  const menuCloseButtons = document.querySelectorAll("[data-menu-close]");
+  const menuLinks = menu.querySelectorAll("a");
+
+  const setMenuOpen = (open, returnFocus = false) => {
+    menu.classList.toggle("is-open", open);
+    menu.setAttribute("aria-hidden", String(!open));
+    menuToggle.setAttribute("aria-expanded", String(open));
+    menuToggle.setAttribute("aria-label", open ? "Cerrar menú de secciones" : "Abrir menú de secciones");
+    document.body.classList.toggle("menu-open", open);
+
+    if (open) menu.querySelector("a")?.focus();
+    if (!open && returnFocus) menuToggle.focus();
+  };
+
+  menuToggle.addEventListener("click", () => setMenuOpen(!menu.classList.contains("is-open")));
+  menuCloseButtons.forEach((button) => button.addEventListener("click", () => setMenuOpen(false, true)));
+  menuLinks.forEach((link) => link.addEventListener("click", () => setMenuOpen(false)));
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && menu.classList.contains("is-open")) setMenuOpen(false, true);
+  });
 })();
