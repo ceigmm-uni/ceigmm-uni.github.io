@@ -173,12 +173,12 @@
         </div>
         <nav class="section-menu-nav" aria-label="Secciones del sitio">
           <a href="#inicio"><span>01</span>Inicio</a>
-          <a href="#ejes"><span>02</span>Ejes de trabajo</a>
-          <a href="#agenda"><span>03</span>Actividades</a>
-          <a href="#historia"><span>04</span>Historia de la FIGMM</a>
-          <a href="#canal"><span>05</span>Canal de WhatsApp</a>
-          <a href="#biblioteca"><span>06</span>Drive CEIGMM</a>
-          <a href="#conoce"><span>07</span>Quiénes somos</a>
+          <a href="#conoce"><span>02</span>Quiénes somos</a>
+          <a href="#ejes"><span>03</span>Ejes de trabajo</a>
+          <a href="#agenda"><span>04</span>Actividades</a>
+          <a href="#historia"><span>05</span>Historia de la FIGMM</a>
+          <a href="#canal"><span>06</span>Canal de WhatsApp</a>
+          <a href="#biblioteca"><span>07</span>Drive CEIGMM</a>
           <a href="#directiva"><span>08</span>Directiva</a>
           <a href="#contacto"><span>09</span>Sugerencias y contacto</a>
         </nav>
@@ -200,10 +200,11 @@
         </a>
       </div>
       <nav class="main-nav" aria-label="Navegación principal">
+        <a href="#conoce">Quiénes somos</a>
+        <a href="#ejes">Ejes</a>
         <a href="#agenda">Actividades</a>
         <a href="#historia">Historia</a>
         <a href="#biblioteca">Drive</a>
-        <a href="#conoce">Quiénes somos</a>
         <a href="#directiva">Directiva</a>
         <a href="#contacto">Sugerencias</a>
       </nav>
@@ -231,6 +232,18 @@
         </div>
         <div class="specialties" aria-label="Especialidades representadas">${especialidades}</div>
       </aside>
+    </section>
+
+    <section class="welcome" id="conoce">
+      <div class="welcome-heading">
+        <p class="section-kicker">${escapar(datos.presentacion.etiqueta)}</p>
+        <h2>${escapar(datos.presentacion.titulo)}</h2>
+      </div>
+      <div class="welcome-copy">
+        <p>${escapar(datos.presentacion.texto)}</p>
+        <a class="text-link" href="#ejes">${escapar(datos.presentacion.enlaceTexto)} <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="stats" aria-label="CEIGMM en cifras">${cifras}</div>
     </section>
 
     <section class="pillars" id="ejes">
@@ -312,18 +325,6 @@
       </div>
       <div class="library-grid">${escuelasBiblioteca}</div>
       <p class="library-note">${escapar(datos.biblioteca.nota)}</p>
-    </section>
-
-    <section class="welcome" id="conoce">
-      <div class="welcome-heading">
-        <p class="section-kicker">${escapar(datos.presentacion.etiqueta)}</p>
-        <h2>${escapar(datos.presentacion.titulo)}</h2>
-      </div>
-      <div class="welcome-copy">
-        <p>${escapar(datos.presentacion.texto)}</p>
-        <a class="text-link" href="#ejes">${escapar(datos.presentacion.enlaceTexto)} <span aria-hidden="true">→</span></a>
-      </div>
-      <div class="stats" aria-label="CEIGMM en cifras">${cifras}</div>
     </section>
 
     <section class="team" id="directiva">
