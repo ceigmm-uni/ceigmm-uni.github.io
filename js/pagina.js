@@ -375,5 +375,6 @@
         <a href="#inicio">Volver arriba ↑</a>
         <span>© ${escapar(datos.identidad.anio)} ${escapar(datos.identidad.nombre)}</span>
       </div>
+      <small class="footer-credit">Página hecha en 2026 por CEIGMM L</small>
     </footer>`;
 })();
