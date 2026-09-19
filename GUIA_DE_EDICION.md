@@ -11,6 +11,7 @@ Abre el archivo `contenido/datos.js`. Ahí encontrarás bloques claramente nombr
 - `portada`: título principal, descripción y especialidades.
 - `presentacion`: explicación y cifras.
 - `ejes`: los tres ejes de trabajo.
+- `iniciativas`: proyectos en marcha, objetivo, estado, contacto, ubicación, horario y afiche.
 - `agenda`: actividades, convocatorias y estados.
 - `canalWhatsapp`: enlace, nombre, descripción y temas del canal oficial.
 - `contacto`: mensaje final y redes sociales.
@@ -54,6 +55,7 @@ Usa exactamente esos nombres para que no tengas que cambiar ningún código. Con
 ## 3. Agregar imágenes y documentos
 
 - Guarda fotos de eventos en `imagenes/actividades/`.
+- Guarda los afiches de proyectos en `imagenes/iniciativas/`.
 - Guarda fotos de integrantes en `imagenes/directiva/`.
 - Guarda reglamentos, pronunciamientos y PDF en `documentos/`.
 

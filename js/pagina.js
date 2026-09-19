@@ -46,6 +46,49 @@
     )
     .join("");
 
+  const iniciativas = datos.iniciativas.items
+    .map((item, indice) => {
+      const telefono = String(item.telefono || "").replace(/\D/g, "");
+      const detalles = [
+        item.responsable
+          ? `<div><dt>Impulsa</dt><dd>${escapar(item.responsable)}</dd></div>`
+          : "",
+        item.contacto
+          ? `<div><dt>Contacto</dt><dd>${escapar(item.contacto)}${telefono ? ` · <a href="tel:+51${telefono}">${escapar(item.telefono)}</a>` : ""}</dd></div>`
+          : "",
+        item.ubicacion
+          ? `<div><dt>Ubicación</dt><dd>${escapar(item.ubicacion)}</dd></div>`
+          : "",
+        item.horario
+          ? `<div><dt>Horario</dt><dd>${escapar(item.horario)}</dd></div>`
+          : "",
+      ].join("");
+
+      return `
+        <article class="initiative-card">
+          <div class="initiative-visual">
+            <img src="${escapar(item.imagen)}" alt="${escapar(item.imagenAlt)}" width="768" height="1376" loading="lazy" />
+          </div>
+          <div class="initiative-copy">
+            <div class="initiative-meta">
+              <span class="initiative-number">${String(indice + 1).padStart(2, "0")}</span>
+              <span class="initiative-category">${escapar(item.categoria)}</span>
+              <span class="initiative-status">${escapar(item.estado)}</span>
+            </div>
+            <h3>${escapar(item.titulo)}</h3>
+            <div class="initiative-objective">
+              <small>Objetivo</small>
+              <p>${escapar(item.objetivo)}</p>
+            </div>
+            <dl class="initiative-details">${detalles}</dl>
+            <a class="button initiative-button" href="${escapar(item.imagen)}" target="_blank" rel="noreferrer">
+              ${escapar(item.boton)} <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </article>`;
+    })
+    .join("");
+
   const agenda = datos.agenda.items
     .map((item, indice) => {
       const contenido = `
@@ -175,12 +218,13 @@
           <a href="#inicio"><span>01</span>Inicio</a>
           <a href="#conoce"><span>02</span>Quiénes somos</a>
           <a href="#ejes"><span>03</span>Ejes de trabajo</a>
-          <a href="#agenda"><span>04</span>Actividades</a>
-          <a href="#historia"><span>05</span>Historia de la FIGMM</a>
-          <a href="#canal"><span>06</span>Canal de WhatsApp</a>
-          <a href="#biblioteca"><span>07</span>Drive CEIGMM</a>
-          <a href="#directiva"><span>08</span>Directiva</a>
-          <a href="#contacto"><span>09</span>Sugerencias y contacto</a>
+          <a href="#iniciativas"><span>04</span>Iniciativas CEIGMM</a>
+          <a href="#agenda"><span>05</span>Actividades</a>
+          <a href="#historia"><span>06</span>Historia de la FIGMM</a>
+          <a href="#canal"><span>07</span>Canal de WhatsApp</a>
+          <a href="#biblioteca"><span>08</span>Drive CEIGMM</a>
+          <a href="#directiva"><span>09</span>Directiva</a>
+          <a href="#contacto"><span>10</span>Sugerencias y contacto</a>
         </nav>
       </aside>
     </div>
@@ -202,8 +246,8 @@
       <nav class="main-nav" aria-label="Navegación principal">
         <a href="#conoce">Quiénes somos</a>
         <a href="#ejes">Ejes</a>
+        <a href="#iniciativas">Iniciativas</a>
         <a href="#agenda">Actividades</a>
-        <a href="#historia">Historia</a>
         <a href="#biblioteca">Drive</a>
         <a href="#directiva">Directiva</a>
         <a href="#contacto">Sugerencias</a>
@@ -255,6 +299,17 @@
         <p>${escapar(datos.ejes.introduccion)}</p>
       </div>
       <div class="pillar-grid">${ejes}</div>
+    </section>
+
+    <section class="initiatives" id="iniciativas">
+      <div class="initiatives-heading">
+        <div>
+          <p class="section-kicker">${escapar(datos.iniciativas.etiqueta)}</p>
+          <h2>${escapar(datos.iniciativas.titulo)}</h2>
+        </div>
+        <p>${escapar(datos.iniciativas.introduccion)}</p>
+      </div>
+      <div class="initiatives-list">${iniciativas}</div>
     </section>
 
     <section class="agenda" id="agenda">
@@ -408,6 +463,20 @@
       </div>
       <small class="footer-credit">Página hecha en 2026 por CEIGMM L</small>
     </footer>`;
+
+  const alinearSeccionInicial = () => {
+    const id = decodeURIComponent(window.location.hash.slice(1));
+    const destino = id ? document.getElementById(id) : null;
+
+    if (!destino) return;
+
+    const desplazamientoAnterior = document.documentElement.style.scrollBehavior;
+    document.documentElement.style.scrollBehavior = "auto";
+    destino.scrollIntoView({ block: "start" });
+    document.documentElement.style.scrollBehavior = desplazamientoAnterior;
+  };
+
+  requestAnimationFrame(() => requestAnimationFrame(alinearSeccionInicial));
 
   const menu = document.querySelector("#section-menu");
   const menuToggle = document.querySelector("[data-menu-toggle]");

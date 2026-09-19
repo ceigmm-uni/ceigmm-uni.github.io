@@ -81,6 +81,31 @@ window.CEIGMM_DATA = {
     ],
   },
 
+  iniciativas: {
+    etiqueta: "Proyectos en marcha",
+    titulo: "Iniciativas CEIGMM",
+    introduccion:
+      "Conoce los proyectos que estamos impulsando, el objetivo de cada uno y cómo puedes participar.",
+    items: [
+      {
+        categoria: "Sostenibilidad",
+        titulo: "Libera tu escritorio y tu mente",
+        objetivo:
+          "Recolectar hojas usadas de la comunidad FIGMM para darles una nueva vida mediante su reutilización o reciclaje, reduciendo residuos de papel y liberando espacios de estudio.",
+        estado: "En marcha",
+        responsable: "CEIGMM",
+        contacto: "Dayana Alvarez",
+        telefono: "933 571 611",
+        ubicacion: "Oficina del CEIGMM",
+        horario: "De 9:00 a. m. a 7:00 p. m.",
+        imagen: "imagenes/iniciativas/libera-tu-escritorio-y-tu-mente.png",
+        imagenAlt:
+          "Afiche de la iniciativa Libera tu escritorio y tu mente para reciclar hojas usadas con el CEIGMM",
+        boton: "Ver afiche completo",
+      },
+    ],
+  },
+
   agenda: {
     etiqueta: "Comunidad en movimiento",
     titulo: "Agenda CEIGMM",
@@ -464,6 +489,16 @@ window.CEIGMM_DATA = {
         nombre: "Facebook",
         enlace: "https://www.facebook.com/423691981158949",
         estilo: "claro",
+      },
+      {
+        nombre: "Instagram",
+        enlace: "https://www.instagram.com/ceigmm/",
+        estilo: "contorno",
+      },
+      {
+        nombre: "TikTok",
+        enlace: "https://www.tiktok.com/@ceigmm_2026",
+        estilo: "contorno",
       },
       {
         nombre: "LinkedIn",
