@@ -121,14 +121,40 @@
     .map((tema) => `<span>${escapar(tema)}</span>`)
     .join("");
 
+  const iconosRedes = {
+    facebook: `
+      <svg class="social-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24">
+        <path fill="currentColor" d="M14 8h3V4h-3c-3.3 0-6 2.7-6 6v2H5v4h3v8h4v-8h4l1-4h-5v-2c0-1.1.9-2 2-2Z" />
+      </svg>`,
+    instagram: `
+      <svg class="social-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24">
+        <rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2" />
+        <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2" />
+        <circle cx="17.4" cy="6.6" r="1.2" fill="currentColor" />
+      </svg>`,
+    tiktok: `
+      <svg class="social-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24">
+        <path fill="currentColor" d="M14 3v10.9a4.5 4.5 0 1 1-3.5-4.4v3.1a1.7 1.7 0 1 0 .5 1.2V3h3c.5 2.2 1.8 3.7 4 4.3v3a8.6 8.6 0 0 1-4-1.5V3Z" />
+      </svg>`,
+    linkedin: `
+      <svg class="social-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24">
+        <rect x="3" y="3" width="18" height="18" rx="2" fill="none" stroke="currentColor" stroke-width="2" />
+        <circle cx="8" cy="8" r="1.4" fill="currentColor" />
+        <path fill="currentColor" d="M6.6 10.5h2.8V18H6.6v-7.5Zm4.5 0h2.7v1c.7-.9 1.6-1.3 2.8-1.3 2.1 0 3.4 1.4 3.4 4V18h-2.8v-3.5c0-1.3-.5-2-1.6-2-1.2 0-1.7.8-1.7 2.3V18h-2.8v-7.5Z" />
+      </svg>`,
+  };
+
   const redes = datos.contacto.redes
-    .map(
-      (red) => `
+    .map((red) => {
+      const icono = iconosRedes[red.icono] || "";
+
+      return `
         <a class="button ${red.estilo === "claro" ? "light-button" : "outline-button"}"
            href="${escapar(red.enlace)}"${linkExterno(red.enlace)}>
-          ${escapar(red.nombre)} <span aria-hidden="true">↗</span>
-        </a>`,
-    )
+          <span class="social-label">${icono}<span>${escapar(red.nombre)}</span></span>
+          <span class="social-arrow" aria-hidden="true">↗</span>
+        </a>`;
+    })
     .join("");
 
   const especialidades = datos.portada.especialidadesRepresentadas

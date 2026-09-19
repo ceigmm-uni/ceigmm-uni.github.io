@@ -487,21 +487,25 @@ window.CEIGMM_DATA = {
     redes: [
       {
         nombre: "Facebook",
+        icono: "facebook",
         enlace: "https://www.facebook.com/423691981158949",
         estilo: "claro",
       },
       {
         nombre: "Instagram",
+        icono: "instagram",
         enlace: "https://www.instagram.com/ceigmm/",
         estilo: "contorno",
       },
       {
         nombre: "TikTok",
+        icono: "tiktok",
         enlace: "https://www.tiktok.com/@ceigmm_2026",
         estilo: "contorno",
       },
       {
         nombre: "LinkedIn",
+        icono: "linkedin",
         enlace: "https://www.linkedin.com/company/ceigmm/",
         estilo: "contorno",
       },

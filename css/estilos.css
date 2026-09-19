@@ -239,6 +239,10 @@ img { display: block; max-width: 100%; }
 .contact-email > span { position: absolute; top: 50%; right: 22px; color: #e6bd72; transform: translateY(-50%); }
 .contact-links { display: flex; flex-wrap: wrap; gap: 12px; }
 .contact-intro .contact-links { margin-top: 15px; }
+.contact-links .button { gap: 14px; justify-content: flex-start; }
+.social-label { display: inline-flex; align-items: center; gap: 9px; }
+.social-icon { width: 18px; height: 18px; display: block; flex: 0 0 auto; }
+.social-arrow { margin-left: auto; }
 .light-button { color: var(--wine-dark); background: #f1d39a; }
 .outline-button { color: #fff; border-color: rgb(255 255 255 / 35%); }
 .contact-form { padding: 38px; color: var(--charcoal); background: var(--white); box-shadow: 0 30px 65px rgb(43 3 0 / 24%); }
