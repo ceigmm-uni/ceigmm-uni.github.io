@@ -337,8 +337,9 @@ window.CEIGMM_DATA = {
           {
             nombre: "Madely Flores",
             cargo: "Secretaría de Prensa",
-            imagen: "",
-            iniciales: "MF",
+            imagen: "imagenes/directiva/madely-flores-recorte.png",
+            formatoImagen: "retrato",
+            zoomFoto: 175,
           },
         ],
       },
