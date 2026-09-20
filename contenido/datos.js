@@ -428,8 +428,9 @@ window.CEIGMM_DATA = {
           {
             nombre: "Jean Alvites",
             cargo: "Apoyo a la Directiva",
-            imagen: "",
-            iniciales: "JA",
+            imagen: "imagenes/directiva/jean-alvites-recorte.png",
+            formatoImagen: "retrato",
+            zoomFoto: 90,
           },
           {
             nombre: "Cristhian Olivares",
