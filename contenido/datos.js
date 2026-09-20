@@ -11,6 +11,7 @@ window.CEIGMM_DATA = {
     logoCeigmm: "imagenes/logos/logo-ceigmm.png?v=2",
     logoUni: "imagenes/logos/logo-uni.png",
     enlaceUni: "https://www.uni.edu.pe/",
+    enlaceFigmm: "https://www.figmm.uni.edu.pe/",
     facultad: "Facultad de Ingeniería Geológica, Minera y Metalúrgica",
     universidad: "Universidad Nacional de Ingeniería",
     ciudad: "Lima, Perú",

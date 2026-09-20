@@ -265,9 +265,14 @@
           </span>
         </a>
         <span class="brand-divider" aria-hidden="true"></span>
-        <a class="uni-brand" href="${escapar(datos.identidad.enlaceUni)}" target="_blank" rel="noreferrer" aria-label="Universidad Nacional de Ingeniería">
-          <img src="${escapar(datos.identidad.logoUni)}" alt="Universidad Nacional de Ingeniería" />
-        </a>
+        <div class="institutional-links">
+          <a class="uni-brand" href="${escapar(datos.identidad.enlaceUni)}" target="_blank" rel="noreferrer" aria-label="Universidad Nacional de Ingeniería">
+            <img src="${escapar(datos.identidad.logoUni)}" alt="Universidad Nacional de Ingeniería" />
+          </a>
+          <a class="figmm-link" href="${escapar(datos.identidad.enlaceFigmm)}" target="_blank" rel="noreferrer" aria-label="Sitio oficial de la Facultad de Ingeniería Geológica, Minera y Metalúrgica">
+            <span>Nuestra facultad</span><strong>FIGMM</strong><span aria-hidden="true">↗</span>
+          </a>
+        </div>
       </div>
       <nav class="main-nav" aria-label="Navegación principal">
         <a href="#conoce">Quiénes somos</a>
