@@ -253,8 +253,9 @@ window.CEIGMM_DATA = {
           {
             nombre: "Diego Reyes",
             cargo: "Secretaría de Deportes",
-            imagen: "",
-            iniciales: "DR",
+            imagen: "imagenes/directiva/diego-reyes-recorte.png",
+            formatoImagen: "retrato",
+            zoomFoto: 90,
           },
         ],
       },
