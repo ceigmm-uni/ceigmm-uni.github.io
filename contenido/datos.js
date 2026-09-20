@@ -308,9 +308,9 @@ window.CEIGMM_DATA = {
           {
             nombre: "Karen Perez",
             cargo: "Secretaría de Investigación",
-            imagen: "imagenes/directiva/karen-perez-canva.png",
+            imagen: "imagenes/directiva/karen-perez-recorte.png",
             formatoImagen: "retrato",
-            zoomFoto: 115,
+            zoomFoto: 90,
           },
           {
             nombre: "Mirko Puente",
