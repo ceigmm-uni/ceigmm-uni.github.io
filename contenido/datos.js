@@ -484,10 +484,20 @@ window.CEIGMM_DATA = {
       etiqueta: "Formulario de contacto",
       titulo: "Envíanos tu consulta o sugerencia",
       boton: "Enviar",
-      modo: "correo",
-      destino: "",
+      modo: "google",
+      destino:
+        "https://docs.google.com/forms/d/e/1FAIpQLSfA2ocx0ppr0GvTOuN2u58oPN4iVWB6R3v19HvBfauj0ExeRg/formResponse",
+      campos: {
+        nombre: "entry.884915814",
+        correo: "entry.1324010699",
+        telefono: "entry.923469965",
+        motivo: "entry.774967192",
+        mensaje: "entry.237830205",
+      },
       estado:
-        "Al presionar Enviar, se abrirá tu aplicación de correo con el mensaje preparado para el CEIGMM.",
+        "Tu mensaje se guardará de forma privada en la cuenta del CEIGMM.",
+      confirmacion:
+        "¡Gracias! Tu mensaje fue enviado al CEIGMM. Nuestro equipo lo revisará para responderte lo antes posible.",
     },
     redes: [
       {

@@ -267,6 +267,8 @@ img { display: block; max-width: 100%; }
 .form-button { margin-top: 25px; color: #fff; border: 0; background: var(--wine); cursor: pointer; }
 .form-button:disabled { color: #89837a; background: #ddd7cd; cursor: not-allowed; }
 .form-status { max-width: 650px; margin: 15px 0 0; color: var(--muted); font-size: 12px; line-height: 1.55; }
+.form-status.is-success { color: #6d1b13; font-weight: 700; }
+.form-response-frame { display: none; }
 
 footer { padding: 43px 6vw; display: grid; grid-template-columns: 1fr 1.5fr 1fr; gap: 40px; align-items: center; color: #fff; background: var(--wine-dark); }
 .footer-identity { display: flex; align-items: center; gap: 14px; }

@@ -174,7 +174,9 @@
     .join("");
 
   const formularioPorCorreo = datos.contacto.formulario.modo === "correo";
-  const formularioActivo = formularioPorCorreo || Boolean(datos.contacto.formulario.destino);
+  const formularioGoogle = datos.contacto.formulario.modo === "google";
+  const formularioActivo = formularioPorCorreo || formularioGoogle || Boolean(datos.contacto.formulario.destino);
+  const camposFormulario = datos.contacto.formulario.campos || {};
 
   const areasDirectiva = datos.directiva.areas
     .map(
@@ -440,25 +442,25 @@
         <div class="contact-links">${redes}</div>
       </div>
 
-      <form class="contact-form" method="post"${datos.contacto.formulario.destino ? ` action="${escapar(datos.contacto.formulario.destino)}"` : ""}>
+      <form class="contact-form" method="post"${datos.contacto.formulario.destino ? ` action="${escapar(datos.contacto.formulario.destino)}"` : ""}${formularioGoogle ? ' target="ceigmm-form-response"' : ""}>
         <p class="section-kicker light">${escapar(datos.contacto.formulario.etiqueta)}</p>
         <h3>${escapar(datos.contacto.formulario.titulo)}</h3>
         <div class="form-grid">
           <label>
             <span>Nombre completo</span>
-            <input type="text" name="nombre" autocomplete="name" required />
+            <input type="text" name="${escapar(camposFormulario.nombre || "nombre")}" autocomplete="name" required />
           </label>
           <label>
             <span>Correo electrónico</span>
-            <input type="email" name="correo" autocomplete="email" required />
+            <input type="email" name="${escapar(camposFormulario.correo || "correo")}" autocomplete="email" required />
           </label>
           <label>
             <span>Teléfono <small>(opcional)</small></span>
-            <input type="tel" name="telefono" autocomplete="tel" inputmode="tel" />
+            <input type="tel" name="${escapar(camposFormulario.telefono || "telefono")}" autocomplete="tel" inputmode="tel" />
           </label>
           <label>
             <span>Motivo</span>
-            <select name="motivo" required>
+            <select name="${escapar(camposFormulario.motivo || "motivo")}" required>
               <option value="">Selecciona una opción</option>
               <option>Consulta general</option>
               <option>Sugerencia</option>
@@ -471,7 +473,7 @@
           </label>
           <label class="form-message">
             <span>Mensaje</span>
-            <textarea name="mensaje" rows="5" required></textarea>
+            <textarea name="${escapar(camposFormulario.mensaje || "mensaje")}" rows="5" required></textarea>
           </label>
           <label class="form-consent">
             <input type="checkbox" name="consentimiento" required />
@@ -479,8 +481,9 @@
           </label>
         </div>
         <button class="button form-button" type="submit"${formularioActivo ? "" : " disabled"}>${escapar(datos.contacto.formulario.boton)}</button>
-        <p class="form-status">${escapar(datos.contacto.formulario.estado)}</p>
+        <p class="form-status" aria-live="polite">${escapar(datos.contacto.formulario.estado)}</p>
       </form>
+      ${formularioGoogle ? '<iframe class="form-response-frame" name="ceigmm-form-response" title="Confirmación de envío" hidden></iframe>' : ""}
     </section>
 
     <footer>
@@ -536,6 +539,24 @@
       ].join("\n");
 
       window.location.href = `mailto:${datos.contacto.correo}?subject=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpo)}`;
+    });
+  }
+
+  if (formularioGoogle && formularioContacto) {
+    formularioContacto.addEventListener("submit", () => {
+      const boton = formularioContacto.querySelector(".form-button");
+      const estado = formularioContacto.querySelector(".form-status");
+
+      boton.disabled = true;
+      boton.textContent = "Enviando…";
+
+      window.setTimeout(() => {
+        formularioContacto.reset();
+        boton.disabled = false;
+        boton.textContent = datos.contacto.formulario.boton;
+        estado.textContent = datos.contacto.formulario.confirmacion;
+        estado.classList.add("is-success");
+      }, 900);
     });
   }
 
