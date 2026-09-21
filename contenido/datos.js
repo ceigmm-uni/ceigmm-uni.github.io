@@ -484,9 +484,10 @@ window.CEIGMM_DATA = {
       etiqueta: "Formulario de contacto",
       titulo: "Envíanos tu consulta o sugerencia",
       boton: "Enviar",
+      modo: "correo",
       destino: "",
       estado:
-        "Estamos preparando el almacenamiento privado de consultas. Mientras tanto, puedes escribirnos directamente al correo institucional.",
+        "Al presionar Enviar, se abrirá tu aplicación de correo con el mensaje preparado para el CEIGMM.",
     },
     redes: [
       {

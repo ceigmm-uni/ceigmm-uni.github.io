@@ -173,7 +173,8 @@
     )
     .join("");
 
-  const formularioActivo = Boolean(datos.contacto.formulario.destino);
+  const formularioPorCorreo = datos.contacto.formulario.modo === "correo";
+  const formularioActivo = formularioPorCorreo || Boolean(datos.contacto.formulario.destino);
 
   const areasDirectiva = datos.directiva.areas
     .map(
@@ -439,7 +440,7 @@
         <div class="contact-links">${redes}</div>
       </div>
 
-      <form class="contact-form" method="post"${formularioActivo ? ` action="${escapar(datos.contacto.formulario.destino)}"` : ""}>
+      <form class="contact-form" method="post"${datos.contacto.formulario.destino ? ` action="${escapar(datos.contacto.formulario.destino)}"` : ""}>
         <p class="section-kicker light">${escapar(datos.contacto.formulario.etiqueta)}</p>
         <h3>${escapar(datos.contacto.formulario.titulo)}</h3>
         <div class="form-grid">
@@ -478,7 +479,7 @@
           </label>
         </div>
         <button class="button form-button" type="submit"${formularioActivo ? "" : " disabled"}>${escapar(datos.contacto.formulario.boton)}</button>
-        ${formularioActivo ? "" : `<p class="form-status">${escapar(datos.contacto.formulario.estado)}</p>`}
+        <p class="form-status">${escapar(datos.contacto.formulario.estado)}</p>
       </form>
     </section>
 
@@ -508,6 +509,35 @@
   };
 
   requestAnimationFrame(() => requestAnimationFrame(alinearSeccionInicial));
+
+  const formularioContacto = document.querySelector(".contact-form");
+
+  if (formularioPorCorreo && formularioContacto) {
+    formularioContacto.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      if (!formularioContacto.reportValidity()) return;
+
+      const campos = new FormData(formularioContacto);
+      const motivo = String(campos.get("motivo") || "Consulta desde la web");
+      const nombre = String(campos.get("nombre") || "");
+      const correo = String(campos.get("correo") || "");
+      const telefono = String(campos.get("telefono") || "No indicado");
+      const mensaje = String(campos.get("mensaje") || "");
+      const asunto = `[Web CEIGMM] ${motivo}`;
+      const cuerpo = [
+        `Nombre: ${nombre}`,
+        `Correo: ${correo}`,
+        `Teléfono: ${telefono}`,
+        `Motivo: ${motivo}`,
+        "",
+        "Mensaje:",
+        mensaje,
+      ].join("\n");
+
+      window.location.href = `mailto:${datos.contacto.correo}?subject=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpo)}`;
+    });
+  }
 
   const menu = document.querySelector("#section-menu");
   const menuToggle = document.querySelector("[data-menu-toggle]");
