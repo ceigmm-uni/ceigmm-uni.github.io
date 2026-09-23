@@ -135,6 +135,9 @@ img { display: block; max-width: 100%; }
 .initiative-visual::before { content: ''; position: absolute; width: 320px; height: 320px; top: -170px; right: -150px; border: 1px solid rgb(255 255 255 / 13%); border-radius: 50%; box-shadow: 0 0 0 52px rgb(255 255 255 / 3%), 0 0 0 105px rgb(199 144 47 / 5%); }
 .initiative-visual img { position: relative; width: min(100%, 360px); height: auto; max-height: 620px; object-fit: contain; border: 1px solid rgb(255 255 255 / 24%); box-shadow: 0 24px 55px rgb(27 2 0 / 40%); transition: transform .25s ease; }
 .initiative-card:hover .initiative-visual img { transform: translateY(-5px); }
+.initiative-card + .initiative-card { margin-top: 42px; }
+.initiative-card--horizontal { grid-template-columns: minmax(460px, 1.2fr) minmax(0, .8fr); }
+.initiative-card--horizontal .initiative-visual img { width: min(100%, 760px); max-height: none; }
 .initiative-copy { padding: clamp(38px, 5vw, 70px); display: flex; flex-direction: column; justify-content: center; }
 .initiative-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 11px; }
 .initiative-number { color: var(--gold); font-family: Georgia, serif; font-size: 25px; }
@@ -148,6 +151,7 @@ img { display: block; max-width: 100%; }
 .initiative-details div { min-width: 0; padding: 17px 18px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 .initiative-details dt { color: var(--wine); font-size: 8px; font-weight: 800; letter-spacing: .13em; text-transform: uppercase; }
 .initiative-details dd { margin: 8px 0 0; overflow-wrap: anywhere; color: #4f4a43; font-size: 13px; line-height: 1.5; }
+.initiative-contacts dd { display: flex; flex-direction: column; gap: 5px; }
 .initiative-details a { color: var(--wine); border-bottom: 1px solid #d9bcb8; }
 .initiative-button { width: max-content; margin-top: 31px; color: #fff; background: var(--wine); }
 
@@ -305,7 +309,7 @@ footer > p { margin: 0; color: rgb(255 255 255 / 45%); font-size: 9px; line-heig
   .stats div + div { border-left: 0; border-top: 1px solid var(--line); }
   .pillar-grid { grid-template-columns: 1fr; }
   .pillar-card { min-height: 315px; }
-  .initiative-card { grid-template-columns: 1fr; }
+  .initiative-card, .initiative-card--horizontal { grid-template-columns: 1fr; }
   .initiative-visual { min-height: 0; }
   .initiative-visual img { width: min(100%, 420px); max-height: none; }
   .agenda-title { position: static; }

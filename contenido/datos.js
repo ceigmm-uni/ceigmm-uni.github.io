@@ -104,6 +104,26 @@ window.CEIGMM_DATA = {
           "Afiche de la iniciativa Libera tu escritorio y tu mente para reciclar hojas usadas con el CEIGMM",
         boton: "Ver afiche completo",
       },
+      {
+        categoria: "Pro fondos",
+        titulo: "Gran rifa CEIGMM",
+        objetivo:
+          "Recaudar fondos para la organización de la Semana de la Facultad, promoviendo la participación y el apoyo de toda la comunidad FIGMM.",
+        estado: "Venta activa",
+        responsable: "CEIGMM 2026–2027",
+        precio: "S/ 3 por número",
+        fecha: "Sorteo: 9 de octubre de 2026",
+        contactos: [
+          { nombre: "Leo", telefono: "995 217 273" },
+          { nombre: "Treyzy", telefono: "995 882 539" },
+          { nombre: "Arturo", telefono: "965 434 230" },
+        ],
+        imagen: "imagenes/iniciativas/gran-rifa-ceigmm.png",
+        formatoImagen: "horizontal",
+        imagenAlt:
+          "Afiche de la Gran Rifa CEIGMM pro fondos para la Semana de la Facultad",
+        boton: "Ver afiche completo",
+      },
     ],
   },
 
@@ -117,7 +137,7 @@ window.CEIGMM_DATA = {
         tipo: "Desafío académico",
         titulo: "DAI UNI",
         texto:
-          "El Desafío Académico Interdisciplinario comenzará en la semana 5 y estará dirigido a estudiantes de los primeros cuatro ciclos. Pronto compartiremos más información.",
+          "El Desafío Académico Interdisciplinario comenzará en la semana 6 y estará dirigido a estudiantes de los primeros cuatro ciclos. Pronto compartiremos más información.",
         estado: "Próximamente",
         enlace: "",
         imagen: "",

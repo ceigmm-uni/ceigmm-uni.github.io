@@ -49,12 +49,29 @@
   const iniciativas = datos.iniciativas.items
     .map((item, indice) => {
       const telefono = String(item.telefono || "").replace(/\D/g, "");
+      const contactos = Array.isArray(item.contactos)
+        ? item.contactos
+            .map((contacto) => {
+              const numero = String(contacto.telefono || "").replace(/\D/g, "");
+              return `<span>${escapar(contacto.nombre)} · <a href="tel:+51${numero}">${escapar(contacto.telefono)}</a></span>`;
+            })
+            .join("")
+        : "";
       const detalles = [
         item.responsable
           ? `<div><dt>Impulsa</dt><dd>${escapar(item.responsable)}</dd></div>`
           : "",
         item.contacto
           ? `<div><dt>Contacto</dt><dd>${escapar(item.contacto)}${telefono ? ` · <a href="tel:+51${telefono}">${escapar(item.telefono)}</a>` : ""}</dd></div>`
+          : "",
+        contactos
+          ? `<div class="initiative-contacts"><dt>Comprar rifa</dt><dd>${contactos}</dd></div>`
+          : "",
+        item.precio
+          ? `<div><dt>Colaboración</dt><dd>${escapar(item.precio)}</dd></div>`
+          : "",
+        item.fecha
+          ? `<div><dt>Fecha</dt><dd>${escapar(item.fecha)}</dd></div>`
           : "",
         item.ubicacion
           ? `<div><dt>Ubicación</dt><dd>${escapar(item.ubicacion)}</dd></div>`
@@ -65,7 +82,7 @@
       ].join("");
 
       return `
-        <article class="initiative-card">
+        <article class="initiative-card${item.formatoImagen === "horizontal" ? " initiative-card--horizontal" : ""}">
           <div class="initiative-visual">
             <img src="${escapar(item.imagen)}" alt="${escapar(item.imagenAlt)}" width="768" height="1376" loading="lazy" />
           </div>
